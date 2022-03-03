@@ -19,6 +19,7 @@ movie.genre }}</span>
 </template>
 <script>
 import axios from 'axios';
+import Vue from 'vue';
 import StarRating from 'vue-star-rating';
 const wrapper = document.createElement('div');
 // shared state
