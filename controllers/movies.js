@@ -1,10 +1,10 @@
-import Movie, { find, findById } from "../models/Movie";
-import Rating from "../models/Rating";
+var Movie = require("../models/Movie");
+const Rating = require("../models/Rating");
 
-export function controller(app) {
+module.exports.controller = app => {
   // fetch all movies
   app.get("/movies", function(req, res) {
-    find(
+    Movie.find(
       {},
       "name description release_year genre",
       { sort: { _id: -1 } },
@@ -21,15 +21,16 @@ export function controller(app) {
 
   // fetch a single movie
   app.get("/api/movies/:id", function(req, res) {
-    findById(req.params.id, "name description release_year genre", function(
-      error,
-      movie
-    ) {
-      if (error) {
-        console.error(error);
+    Movie.findById(
+      req.params.id,
+      "name description release_year genre",
+      function(error, movie) {
+        if (error) {
+          console.error(error);
+        }
+        res.send(movie);
       }
-      res.send(movie);
-    });
+    );
   });
 
   // rate a movie
@@ -68,4 +69,4 @@ export function controller(app) {
       res.send(movie);
     });
   });
-}
+};
