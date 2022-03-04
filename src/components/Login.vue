@@ -1,7 +1,8 @@
 <template>
 <div>
  <div class="login">
- <a class="btn facebook" href="/login/facebook"> LOGIN WITH FACEBOOK</a>
+ <a class="btn facebook" href="/login/facebook"> LOGIN WITH
+FACEBOOK</a>
  </div>
 
   <v-form v-model="valid" ref="form" lazy-validation>
