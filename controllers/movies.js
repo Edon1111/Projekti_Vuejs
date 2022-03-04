@@ -1,9 +1,10 @@
 var Movie = require("../models/Movie");
 const Rating = require("../models/Rating");
+const passport = require("passport");
 
 module.exports.controller = app => {
   // fetch all movies
-  app.get("/movies", function(req, res) {
+  app.get("/movies", (req, res) => {
     Movie.find(
       {},
       "name description release_year genre",
@@ -19,30 +20,38 @@ module.exports.controller = app => {
     );
   });
 
- // fetch a single movie
- app.get('/api/movies/:id', (req, res) => {
-  MovieSchema.findById(req.params.id, 'name description release_yeargenre', (error, movie) => {
-  if (error) { console.error(error); }
-  res.send(movie);
-  });
+  // fetch a single movie
+  app.get("/api/movies/:id", (req, res) => {
+    Movie.findById(
+      req.params.id,
+      "name description release_yeargenre",
+      (error, movie) => {
+        if (error) {
+          console.error(error);
+        }
+        res.send(movie);
+      }
+    );
   });
 
-   // rate a movie
- app.post('/movies/rate/:id', (req, res) => {
-  const rating = new Rating({
-  movie_id: req.params.id,
-  user_id: req.body.user_id,
-  rate: req.body.rate,
-  })
-  rating.save(function (error, rating) {
-  if (error) { console.log(error); }
-  res.send({
-  movie_id: rating.movie_id,
-  user_id: rating.user_id,
-  rate: rating.rate
-  })
-  })
-  })
+  // rate a movie
+  app.post("/movies/rate/:id", (req, res) => {
+    const rating = new Rating({
+      movie_id: req.params.id,
+      user_id: req.body.user_id,
+      rate: req.body.rate
+    });
+    rating.save(function(error, rating) {
+      if (error) {
+        console.log(error);
+      }
+      res.send({
+        movie_id: rating.movie_id,
+        user_id: rating.user_id,
+        rate: rating.rate
+      });
+    });
+  });
 
   // add a new movie
   app.post("/movies", (req, res) => {
