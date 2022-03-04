@@ -1,4 +1,9 @@
 <template>
+<div>
+ <div class="login">
+ <a class="btn facebook" href="/login/facebook"> LOGIN WITH FACEBOOK</a>
+ </div>
+
   <v-form v-model="valid" ref="form" lazy-validation>
     <v-text-field
       label="Email"
@@ -12,6 +17,7 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
+  </div>
 </template>
 
 <script>
