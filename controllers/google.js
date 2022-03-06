@@ -12,4 +12,12 @@ module.exports.controller = (app) => {
  (accessToken, refreshToken, profile, cb) => {
  // Handle google login
  }));
+ app.get('/login/google',
+ passport.authenticate('google', { scope: ['email'] }));
+ app.get('/login/google/return',
+ passport.authenticate('google', { failureRedirect: '/login' }),
+ (req, res) => {
+ res.redirect('/');
+ });
+
 };
