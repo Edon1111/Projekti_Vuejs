@@ -3,6 +3,7 @@
  <div class="login">
  <a class="btn facebook" href="/login/facebook"> LOGIN WITH
 FACEBOOK</a>
+<a class="btn google" href="/login/google"> LOGIN WITH GOOGLE</a>
  </div>
 
   <v-form v-model="valid" ref="form" lazy-validation>
