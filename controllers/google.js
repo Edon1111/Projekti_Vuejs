@@ -10,8 +10,27 @@ module.exports.controller = (app) => {
  callbackURL: '/login/google/return',
  },
  (accessToken, refreshToken, profile, cb) => {
- // Handle google login
- }));
+    const email = profile.emails[0].value;
+    User.getUserByEmail(email, (err, user) => {
+    if (!user) {
+    const newUser = new User({
+    fullname: profile.displayName,
+    email,
+    facebookId: profile.id,
+    });
+    User.createUser(newUser, (error) => {
+    if (error) {
+    // Handle error
+    }
+    return cb(null, user);
+    });
+    } else {
+    return cb(null, user);
+    }
+    return true;
+    });
+}));
+
  app.get('/login/google',
  passport.authenticate('google', { scope: ['email'] }));
  app.get('/login/google/return',
@@ -19,5 +38,4 @@ module.exports.controller = (app) => {
  (req, res) => {
  res.redirect('/');
  });
-
 };
