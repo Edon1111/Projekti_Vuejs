@@ -1,7 +1,8 @@
 <template>
-  <v-layout row wrap>
+  <v-layout row wrap >
     <v-flex xs4 v-for="movie in movies" :key="movie._id">
-      <v-card>
+      <h1>asdadas</h1>
+      <v-card class="flex-container">
         <v-card-title primary-title>
           <div>
             <div class="headline">
@@ -21,6 +22,7 @@
     </v-flex>
   </v-layout>
 </template>
+
 <script>
 import axios from "axios";
 export default {

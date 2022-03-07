@@ -1,4 +1,5 @@
 <template>
+  <div id="container">
   <v-form v-model="valid" ref="form" lazy-validation>
     <v-text-field label="Name" v-model="name" required></v-text-field>
     <v-text-field
@@ -18,6 +19,7 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
+  </div>
 </template>
 
 <script>
@@ -71,3 +73,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  #container{
+    width:50%;
+    margin:auto
+  }
+</style>

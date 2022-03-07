@@ -1,4 +1,5 @@
 <template>
+<div id="container">
   <v-form v-model="valid" ref="form" lazy-validation>
     <v-textarea
       label="Movie Name"
@@ -30,6 +31,7 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
+  </div>
 </template>
 
 <script>
@@ -56,6 +58,15 @@ export default {
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
+        const movie = {
+ name: this.name,
+ description: this.description,
+ release_year: this.release_year,
+ genre: this.genre,
+ }
+ this.$store.dispatch("addMovie", movie);
+ this.$refs.form.reset();
+ this.$router.push({ name: 'Home' });
         return axios({
           method: "post",
           data: {
@@ -89,3 +100,11 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+  #container{
+    margin:auto;
+    width:50%
+  }
+</style>

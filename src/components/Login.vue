@@ -1,4 +1,5 @@
 <template>
+<div id="container">
 <div>
  <div class="login">
  <a class="btn facebook" href="/login/facebook"> LOGIN WITH
@@ -19,6 +20,7 @@ FACEBOOK</a>
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
+  </div>
   </div>
 </template>
 
@@ -69,3 +71,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+  #container{
+    margin:auto;
+    width:50%
+  }
+</style>
