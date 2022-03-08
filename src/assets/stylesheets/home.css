@@ -43,14 +43,6 @@ a.side_bar_link {
   border-color: #4875B4;
   color: #fff !important;
  }
- .login,
-.image {
-  min-height: 100vh;
-}
-.bg-image {
-  background-image:url('https://www.pngall.com/wp-content/uploads/2018/06/Cinema-Transparent.png');
-  background-size:cover;
-  background-position:center center;
-}
+
 
  

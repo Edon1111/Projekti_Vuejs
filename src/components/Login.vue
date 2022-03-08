@@ -1,48 +1,28 @@
 <template>
-  <div class="container-fluid">
-            <div class="row no-gutter">
-               
-                <div class="col-md-6 d-none d-md-flex bg-image"></div>
-                
-                <div class="col-md-6 bg-light">
-                    <div class="login d-flex align-items-center py-5">
-                       
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-10 col-xl-7 mx-auto">
-                                    <h3 class="display-4">Log in</h3>
-                                    <p class="text-muted mb-4">To use this website you need to log in</p>
-                                    <form>
-                                        <div class="mb-3">
-                                            <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
-                                        </div>
-                                        <div class="mb-3">
-                                            <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
-                                        </div>
-                                        <div class="form-check">
-                                            <input id="customCheck1" type="checkbox" checked class="form-check-input" />
-                                            <label for="customCheck1" class="form-check-label">Remember password</label>
-                                        </div>
-                                        <div class="d-grid gap-2 mt-2">
-                                        <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm"  >Sign in</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="container">
+<div>
+ <div class="login">
+ <a class="btn facebook" href="/login/facebook"> LOGIN WITH
+FACEBOOK</a>
+<a class="btn google" href="/login/google"> LOGIN WITH GOOGLE</a>
+ </div>
+
+  <v-form v-model="valid" ref="form" lazy-validation>
+    <v-text-field
+      label="Email"
+      v-model="email"
+      :rules="emailRules"
+      required
+    ></v-text-field>
+    <v-text-field label="Password" v-model="password" required></v-text-field>
+    <v-btn @click="submit" :disabled="!valid">
+      submit
+    </v-btn>
+    <v-btn @click="clear">clear</v-btn>
+  </v-form>
+  </div>
+  </div>
 </template>
-<script>
-//importing bootstrap 5 Modules
-import "bootstrap/dist/css/bootstrap.min.css";
-import "src/assets/home.css"
-export default {
-  //
-}
-</script>
 
 <script>
 import axios from "axios";

@@ -4,13 +4,13 @@
         <router-link v-bind:to="{ name: 'Home' }">
           <v-list-tile>
             <v-list-tile-action>
-              <v-icon  color="red darken-4">home</v-icon>
+              <v-icon>home</v-icon>
             </v-list-tile-action>
             <v-list-tile-content id="home">haha</v-list-tile-content>
           </v-list-tile>
         </router-link>
 
-    <v-toolbar color="red darken-4" dark fixed app>
+    <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-title>Home</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -46,8 +46,8 @@
         </div>
       </v-container>
     </v-content>
-    <v-footer color="red darken-4" app>
-      <span class="white--text">&copy; 2022</span>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2017</span>
     </v-footer>
   </v-app>
 </template>
