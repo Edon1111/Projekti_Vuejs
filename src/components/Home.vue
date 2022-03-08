@@ -1,7 +1,6 @@
 <template>
-  <v-layout row wrap >
+  <v-layout row wrap>
     <v-flex xs4 v-for="movie in movies" :key="movie._id">
-      <h1>asdadas</h1>
       <v-card class="flex-container">
         <v-card-title primary-title>
           <div>
@@ -27,31 +26,13 @@
 import axios from "axios";
 export default {
   name: "Movies",
-  data() {
-    return {
-      movies: []
-    };
+  computed: {
+    movies() {
+      return this.$store.getters.fetchMovies;
+    }
   },
   mounted() {
-    this.fetchMovies();
-  },
-  methods: {
-    async fetchMovies() {
-      const token = window.localStorage.getItem("auth");
-      return axios({
-        method: "get",
-        url: "/movies",
-        headers: {
-          Authorization: `JWT ${token}`,
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          this.movies = response.data.movies;
-          this.current_user = response.data.current_user;
-        })
-        .catch(() => {});
-    }
+    this.$store.dispatch("fetchMovies");
   }
 };
 </script>
