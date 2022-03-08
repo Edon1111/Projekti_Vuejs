@@ -26,6 +26,24 @@
         required
         :rules="genreRules"
       ></v-textarea>
+      <v-textarea
+        label="Original Language"
+        v-model="originalLanguage"
+        required
+        :rules="nameRules"
+      ></v-textarea>
+      <v-textarea
+        label="RunTime"
+        v-model="runTime"
+        required
+        :rules="nameRules"
+      ></v-textarea>
+      <v-textarea
+        label="More Description"
+        v-model="moreDescription"
+        required
+        :rules="nameRules"
+      ></v-textarea>
       <v-btn @click="submit" :disabled="!valid">
         submit
       </v-btn>
@@ -43,17 +61,18 @@ export default {
     description: "",
     genre: "",
     release_year: "",
-    nameRules: [v => !!v || "Movie name is required"],
+    originalLanguage:"",
+    runTime:"",
+    moreDescription:"",
+    nameRules: [v => !!v || "This field is required"],
     genreRules: [
       v => !!v || "Movie genre year is required",
       v =>
         (v && v.length <= 80) ||
         "Genre must be less than equal to 80characters."
     ],
-    releaseRules: [v => !!v || "Movie release year is required"],
-
     select: null,
-    years: ["2018", "2017", "2016", "2015"]
+    years: ["2022", "2021", "2020", "2019","2018", "2017", "2016", "2015","2014", "2013", "2012", "2011","2010", "2009", "2008", "2007","2006", "2005","2004", "2003", "2002", "2001","2000"]
   }),
   methods: {
     submit() {
@@ -62,7 +81,10 @@ export default {
           name: this.name,
           description: this.description,
           release_year: this.release_year,
-          genre: this.genre
+          genre: this.genre,
+          originalLanguage:this.originalLanguage,
+          runTime:this.runTime,
+          moreDescription:this.moreDescription
         };
         this.$store.dispatch("addMovie", movie);
         this.$refs.form.reset();

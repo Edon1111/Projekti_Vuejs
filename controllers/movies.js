@@ -7,7 +7,7 @@ module.exports.controller = app => {
   app.get("/movies", (req, res) => {
     Movie.find(
       {},
-      "name description release_year genre",
+      "name description release_year genre originalLanguage runTime moreDescription",
       { sort: { _id: -1 } },
       function(error, movies) {
         if (error) {
@@ -24,7 +24,7 @@ module.exports.controller = app => {
   app.get("/api/movies/:id", (req, res) => {
     Movie.findById(
       req.params.id,
-      "name description release_yeargenre",
+      "name description release_year genre originalLanguage runTime moreDescription",
       (error, movie) => {
         if (error) {
           console.error(error);
@@ -59,7 +59,10 @@ module.exports.controller = app => {
       name: req.body.name,
       description: req.body.description,
       release_year: req.body.release_year,
-      genre: req.body.genre
+      genre: req.body.genre,
+      originalLanguage:req.body.originalLanguage,
+      runTime:req.body.runTime,
+      moreDescription:req.body.moreDescription
     });
 
     movie.save(function(error, movie) {

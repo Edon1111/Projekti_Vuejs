@@ -1,25 +1,42 @@
 <template>
-  <v-layout row wrap>
+  <v-layout>
     <v-flex xs4>
-      <v-card>
+      <v-card width="500px">
+           <v-btn v-bind:to="`/`">Back</v-btn>
         <v-card-title primary-title>
           <div>
             <div class="headline">{{ movie.name }}</div>
-            <span class="grey--text"
-              >{{ movie.release_year }} ‧ {{ movie.genre }}</span
-            >
           </div>
         </v-card-title>
-        <h6
+        <v-card-text>
+            Release Year: {{ movie.release_year }}
+        </v-card-text>
+        <v-card-text>
+         Genre : {{ movie.genre }}
+        </v-card-text>
+
+         <v-card-text id="rate_movie"
+          v-if="current_user"
+          @click="rate">
+          Rate this movie
+        </v-card-text>
+
+        <!-- <h6
           class="card-title"
           id="rate_movie"
           v-if="current_user"
           @click="rate"
         >
           Rate this movie
-        </h6>
+        </h6> -->
         <v-card-text>
-          {{ movie.description }}
+         Original Language: {{ movie.originalLanguage }}
+        </v-card-text>
+         <v-card-text>
+         RunTime: {{ movie.runTime }}
+        </v-card-text>
+         <v-card-text>
+        {{ movie.moreDescription }}
         </v-card-text>
       </v-card>
     </v-flex>
