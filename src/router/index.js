@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Movies from "@/components/Movies";
+// import Movies from "@/components/Movies";
 import Contact from "@/components/Contact";
 import AddMovie from "@/components/AddMovie";
 import Movie from "@/components/Movie";
@@ -19,11 +19,11 @@ export default new Router({
       name: 'Home',
       component: Home,
     },
-    {
-      path: "/movies",
-      name: "Movies",
-      component: Movies
-    },
+    // {
+    //   path: "/movies",
+    //   name: "Movies",
+    //   component: Movies
+    // },
     {
       path: "/contact",
       name: "Contact",
