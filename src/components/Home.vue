@@ -1,24 +1,26 @@
 <template>
-<v-container grid-list-md >
-  <v-layout row wrap >
-    <v-flex md4 v-for="movie in movies" :key="movie._id" >
-      <v-card class="flex-container" height="300px" >
-        <v-card-title primary-title>
+  <v-container grid-list-md>
+    <v-layout row wrap>
+      <v-flex md4 v-for="movie in movies" :key="movie._id">
+        <v-card class="flex-container" height="300px">
+          <v-card-title primary-title>
             <div class="headline">
-                {{ movie.name }}
+              {{ movie.name }}
             </div>
             <span class="grey--text"
               >{{ movie.release_year }} ‧ {{ movie.genre }}</span
             >
-        </v-card-title>
-        <v-card-text>
-          {{ movie.description }}
-        </v-card-text>
-         <v-btn flat v-bind:to="`/movies/${movie._id}`">Read more & rate</v-btn>
-      </v-card>
-    </v-flex>
-  </v-layout>
-</v-container>
+          </v-card-title>
+          <v-card-text>
+            {{ movie.description }}
+          </v-card-text>
+          <v-btn flat v-bind:to="`/movies/${movie._id}`"
+            >Read more & rate</v-btn
+          >
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

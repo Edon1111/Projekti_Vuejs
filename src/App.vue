@@ -13,14 +13,7 @@
       <v-toolbar-title>Home</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn
-          id="add_movie_link"
-          flat
-          v-bind:to="{ name: 'AddMovie' }"
-          v-if="current_user && current_user.role === 'admin'"
-        >
-          Add Movie
-        </v-btn>
+        <v-btn text to="/admin">Admin </v-btn>
 
         <v-btn v-bind:to="{ name: 'Home' }" flat>
           <v-list-tile>

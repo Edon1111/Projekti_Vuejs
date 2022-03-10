@@ -26,7 +26,7 @@
       <v-textarea
         name="input-7-1"
         label="Message"
-        v-model="description"
+        v-model="message"
         multi-line
         required
         :rules="messageRules"

@@ -8,6 +8,7 @@ import Register from "@/components/Register";
 import Login from "@/components/Login";
 import NotFound from "@/components/NotFound";
 import Home from "@/components/Home";
+import Admin from "@/components/Admin";
 Vue.use(Router);
 
 export default new Router({
@@ -15,17 +16,17 @@ export default new Router({
 
   routes: [
     {
-      path: '/',
-      name: 'Home',
-      component: Home,
+      path: "/",
+      name: "Home",
+      component: Home
     },
-    // {
-    //   path: "/movies",
-    //   name: "Movies",
-    //   component: Movies
-    // },
     {
-      path: "/contact",
+      path: "/movies",
+      name: "Movies",
+      component: Movie
+    },
+    {
+      path: "/contacts",
       name: "Contact",
       component: Contact
     },
@@ -49,9 +50,15 @@ export default new Router({
       name: "Login",
       component: Login
     },
-    { 
-      path: '/:notFound(.*)', 
-      component: NotFound
+
+    {
+      path: "/admin",
+      name: "Admin",
+      component: Admin
     }
+    // {
+    //   path: "/:notFound(.*)",
+    //   component: NotFound
+    // }
   ]
 });

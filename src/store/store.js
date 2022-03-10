@@ -5,11 +5,16 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     movies: [],
-    contact: []
+    users: []
+    // ratings: [],
+    // contacts: []
   },
+
   getters: {
-    fetchMovies: state => state.movies,
-    fetchContact: state => state.contact
+    fetchMovies: state => state.movies
+    // fetchUsers: state => state.users
+    // fetchRatings: state => state.ratings,
+    // fetchContacts: state => state.contacts
   },
 
   mutations: {
@@ -18,14 +23,22 @@ export const store = new Vuex.Store({
     },
 
     MOVIES: (state, payload) => {
-      state.movies = payload; 
-  },
-  ADD_CONTACT: (state, payload) => {
-    state.contact.unshift(payload);
-  },
+      state.movies = payload;
+    },
+    ADD_CONTACT: (state, payload) => {
+      state.contacts.unshift(payload);
+    },
 
-  CONTACT: (state, payload) => {
-    state.contact = payload;
+    // CONTACTS: (state, payload) => {
+    //   state.contacts = payload;
+    // },
+
+    USERS: (state, users) => {
+      state.users = users;
+    }
+    // RATINGS: (state, payload) => {
+    //   state.ratings = payload;
+    // }
   },
 
   actions: {
@@ -44,26 +57,25 @@ export const store = new Vuex.Store({
         })
         .catch(() => {
           this.$swal("Oh oo!", "Could not add the movie!", "error");
-      })},
-      addContact: (context, payload) => {
-        return axios({
-          method: "post",
-          data: payload,
-          url: "/contact",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-          .then(response => {
-            context.commit("ADD_CONTACT", response.data);
-            this.$swal("Great!", "We received your message!", "success");
-          })
-          .catch(() => {
-            this.$swal("Oh oo!", "We didn't get your message!", "error");
-          });
-      },
+        });
     },
-
+    addContact: (context, payload) => {
+      return axios({
+        method: "post",
+        data: payload,
+        url: "/contacts",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          context.commit("ADD_CONTACT", response.data);
+          this.$swal("Great!", "We received your message!", "success");
+        })
+        .catch(() => {
+          this.$swal("Oh oo!", "We didn't get your message!", "error");
+        });
+    },
     fetchMovies: (context, payload) => {
       axios({
         method: "get",
@@ -73,14 +85,28 @@ export const store = new Vuex.Store({
           context.commit("MOVIES", response.data.movies);
         })
         .catch(() => {});
-      },
-      fetchContact: (context, payload) => {
-        axios({
-          method: "get",
-          url: "/contact"
+    },
+
+    fetchUsers: (context, payload) => {
+      axios({
+        method: "get",
+        url: "/users"
+      })
+        .then(response => {
+          context.commit("USERS", response.data.users);
         })
-          .then(response => {
-            context.commit("CONTACT", response.data.contact);
-          })
-          .catch(() => {});
-        }}})
+        .catch(() => {});
+    }
+
+    // fetchContacts: (context, payload) => {
+    //   axios({
+    //     method: "get",
+    //     url: "/contacts"
+    //   })
+    //     .then(response => {
+    //       context.commit("CONTACTS", response.data.contacts);
+    //     })
+    //     .catch(() => {});
+    // },
+  }
+});
