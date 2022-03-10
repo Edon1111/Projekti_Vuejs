@@ -16,7 +16,7 @@ module.exports.controller = app => {
       });
     });
   });
-  // add a new movie
+  // add a new contact
   app.post("/contacts", (req, res) => {
     const contact = new Contact({
       name: req.body.name,

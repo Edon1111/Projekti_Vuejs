@@ -5,16 +5,16 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     movies: [],
+    contacts: [],
+    ratings: [],
     users: []
-    // ratings: [],
-    // contacts: []
   },
 
   getters: {
-    fetchMovies: state => state.movies
-    // fetchUsers: state => state.users
-    // fetchRatings: state => state.ratings,
-    // fetchContacts: state => state.contacts
+    fetchMovies: state => state.movies,
+    fetchUsers: state => state.users,
+    fetchRatings: state => state.ratings,
+    fetchContacts: state => state.contacts
   },
 
   mutations: {
@@ -29,16 +29,16 @@ export const store = new Vuex.Store({
       state.contacts.unshift(payload);
     },
 
-    // CONTACTS: (state, payload) => {
-    //   state.contacts = payload;
-    // },
+    CONTACTS: (state, payload) => {
+      state.contacts = payload;
+    },
 
     USERS: (state, users) => {
       state.users = users;
+    },
+    RATINGS: (state, payload) => {
+      state.ratings = payload;
     }
-    // RATINGS: (state, payload) => {
-    //   state.ratings = payload;
-    // }
   },
 
   actions: {
@@ -96,17 +96,28 @@ export const store = new Vuex.Store({
           context.commit("USERS", response.data.users);
         })
         .catch(() => {});
-    }
+    },
 
-    // fetchContacts: (context, payload) => {
-    //   axios({
-    //     method: "get",
-    //     url: "/contacts"
-    //   })
-    //     .then(response => {
-    //       context.commit("CONTACTS", response.data.contacts);
-    //     })
-    //     .catch(() => {});
-    // },
+    fetchContacts: (context, payload) => {
+      axios({
+        method: "get",
+        url: "/contacts"
+      })
+        .then(response => {
+          context.commit("CONTACTS", response.data.contacts);
+        })
+        .catch(() => {});
+    },
+
+    fetchRatings: (context, payload) => {
+      axios({
+        method: "get",
+        url: "/ratings"
+      })
+        .then(response => {
+          context.commit("RATINGS", response.data.ratings);
+        })
+        .catch(() => {});
+    }
   }
 });

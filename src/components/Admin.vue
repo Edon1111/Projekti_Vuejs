@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <!-- <h1>List of Messages delivered from Contact Page</h1>
+    <h1>List of Messages delivered from Contact Page</h1>
     <br />
     <hr />
     <br />
@@ -51,7 +51,11 @@
       <div>{{ contact.surname }}</div>
       <div>{{ contact.message }}</div>
       <div>{{ contact.email }}</div>
-    </div> -->
+    </div>
+
+    <br /><br />
+    <hr />
+    <br /><br />
 
     <h1>List of Registered Users</h1>
 
@@ -64,7 +68,11 @@
       <div>{{ user.password | abbreviate }}</div>
     </div>
 
-    <!-- <h2>List of Ratings</h2>
+    <br /><br />
+    <hr />
+    <br /><br />
+
+    <h2>List of Ratings</h2>
 
     <div class="flex-table">
       <div>Movie_id</div>
@@ -75,17 +83,36 @@
       <div>{{ rating.movie_id }}</div>
       <div>{{ rating.user_id }}</div>
       <div>{{ rating.rate }}</div>
-    </div> -->
+    </div>
   </v-container>
 </template>
 
 <script>
 import { mapState } from "vuex";
 export default {
+  mounted() {
+    this.$store.dispatch("fetchContacts");
+    this.$store.dispatch("fetchMovies");
+    this.$store.dispatch("fetchUsers");
+    this.$store.dispatch("fetchRatings");
+  },
   computed: {
-    ...mapState(["movies"])
-    // ...mapGetters(["users"])
-    // ...mapState(["contacts"])
+    ...mapState(["movies"]),
+    ...mapState(["users"]),
+    ...mapState(["contacts"]),
+    ...mapState(["ratings"]),
+    contacts() {
+      return this.$store.getters.fetchContacts;
+    },
+    movies() {
+      return this.$store.getters.fetchMovies;
+    },
+    users() {
+      return this.$store.getters.fetchUsers;
+    },
+    ratings() {
+      return this.$store.getters.fetchRatings;
+    }
   },
 
   filters: {

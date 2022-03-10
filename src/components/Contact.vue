@@ -61,6 +61,7 @@ export default {
       v => /\S+@\S+\.\S+/.test(v) || "E-mail must be valid"
     ],
   }),
+ 
   methods:  {
   submit() {
       if (this.$refs.form.validate()) {
