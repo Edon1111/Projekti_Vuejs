@@ -60,9 +60,9 @@ module.exports.controller = app => {
       description: req.body.description,
       release_year: req.body.release_year,
       genre: req.body.genre,
-      originalLanguage:req.body.originalLanguage,
-      runTime:req.body.runTime,
-      moreDescription:req.body.moreDescription
+      originalLanguage: req.body.originalLanguage,
+      runTime: req.body.runTime,
+      moreDescription: req.body.moreDescription
     });
 
     movie.save(function(error, movie) {
@@ -71,5 +71,20 @@ module.exports.controller = app => {
       }
       res.send(movie);
     });
+  });
+
+  // delete a movie
+  app.delete("/movies/:id", (req, res) => {
+    Movie.remove(
+      {
+        _id: req.params.id
+      },
+      function(error, movie) {
+        if (error) {
+          console.error(error);
+        }
+        res.send({ success: true });
+      }
+    );
   });
 };
