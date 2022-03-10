@@ -61,9 +61,9 @@ export default {
     description: "",
     genre: "",
     release_year: "",
-    originalLanguage:"",
-    runTime:"",
-    moreDescription:"",
+    originalLanguage: "",
+    runTime: "",
+    moreDescription: "",
     nameRules: [v => !!v || "This field is required"],
     genreRules: [
       v => !!v || "Movie genre year is required",
@@ -72,7 +72,31 @@ export default {
         "Genre must be less than equal to 80characters."
     ],
     select: null,
-    years: ["2022", "2021", "2020", "2019","2018", "2017", "2016", "2015","2014", "2013", "2012", "2011","2010", "2009", "2008", "2007","2006", "2005","2004", "2003", "2002", "2001","2000"]
+    years: [
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017",
+      "2016",
+      "2015",
+      "2014",
+      "2013",
+      "2012",
+      "2011",
+      "2010",
+      "2009",
+      "2008",
+      "2007",
+      "2006",
+      "2005",
+      "2004",
+      "2003",
+      "2002",
+      "2001",
+      "2000"
+    ]
   }),
   methods: {
     submit() {
@@ -82,13 +106,13 @@ export default {
           description: this.description,
           release_year: this.release_year,
           genre: this.genre,
-          originalLanguage:this.originalLanguage,
-          runTime:this.runTime,
-          moreDescription:this.moreDescription
+          originalLanguage: this.originalLanguage,
+          runTime: this.runTime,
+          moreDescription: this.moreDescription
         };
         this.$store.dispatch("addMovie", movie);
         this.$refs.form.reset();
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "Admin" });
       }
       return true;
     },
