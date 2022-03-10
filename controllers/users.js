@@ -30,6 +30,20 @@ module.exports.controller = app => {
       }
     )
   );
+
+  app.get("/users", (req, res) => {
+    User.find({}, "email password ", { sort: { _id: -1 } }, function(
+      error,
+      users
+    ) {
+      if (error) {
+        console.log(error);
+      }
+      res.send({
+        users: users
+      });
+    });
+  });
   // user login
   app.post(
     "/users/login",
