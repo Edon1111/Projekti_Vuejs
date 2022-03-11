@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex xs4>
       <v-card width="500px">
-           <v-btn v-bind:to="`/`">Back</v-btn>
+           <v-btn style="color:#5665BE" v-bind:to="`/Movies`">Back</v-btn>
         <v-card-title primary-title>
           <div>
             <div class="headline">{{ movie.name }}</div>
@@ -133,7 +133,7 @@ export default {
           this.current_user = response.data.current_user;
         })
         .catch(() => {
-          this.$router.push({ name: "Home" });
+          this.$router.push({ name: "Movies" });
         });
     }
   }

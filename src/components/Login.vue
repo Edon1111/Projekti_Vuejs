@@ -1,6 +1,5 @@
 <template>
 <div id="container">
-<div>
  <div class="login">
  <a class="btn facebook" href="/login/facebook"> LOGIN WITH
 FACEBOOK</a>
@@ -21,12 +20,13 @@ FACEBOOK</a>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
   </div>
-  </div>
+ 
 </template>
 
 <script>
 import axios from "axios";
 import bus from "./../bus";
+
 export default {
   data: () => ({
     valid: true,
@@ -57,7 +57,7 @@ export default {
           this.$swal("Great!", "You are ready to start!", "success");
           bus.$emit("refreshUser");
 
-          this.$router.push({ name: "Home" });
+          this.$router.push({ name: "Movies" });
         })
         .catch(error => {
           const message = error.response.data.message;

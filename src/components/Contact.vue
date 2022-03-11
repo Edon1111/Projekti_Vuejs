@@ -73,7 +73,7 @@ export default {
         };
         this.$store.dispatch("addContact", contact);
         this.$refs.form.reset();
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "Movies" });
       }
       return true;
     },

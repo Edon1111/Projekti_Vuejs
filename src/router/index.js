@@ -7,8 +7,9 @@ import Movie from "@/components/Movie";
 import Register from "@/components/Register";
 import Login from "@/components/Login";
 import NotFound from "@/components/NotFound";
-import Home from "@/components/Home";
+import Movies from "@/components/Movies";
 import Admin from "@/components/Admin";
+import Home from "@/components/Home";
 Vue.use(Router);
 
 export default new Router({
@@ -23,7 +24,7 @@ export default new Router({
     {
       path: "/movies",
       name: "Movies",
-      component: Movie
+      component: Movies
     },
     {
       path: "/contacts",

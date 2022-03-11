@@ -21,6 +21,12 @@
           </v-list-tile>
         </v-btn>
 
+        <v-btn v-bind:to="{ name: 'Movies' }" flat>
+          <v-list-tile>
+            <v-list-tile-content id="Movies">Movies</v-list-tile-content>
+          </v-list-tile>
+        </v-btn>
+
         <v-btn v-bind:to="{ name: 'Contact' }" flat>
           <v-list-tile>
             <v-list-tile-content id="contact">Contact</v-list-tile-content>
@@ -94,7 +100,7 @@ export default {
       })
         .then(() => {
           bus.$emit("refreshUser");
-          this.$router.push({ name: "Home" });
+          this.$router.push({ name: "Movies" });
         })
         .catch(() => {});
     }
