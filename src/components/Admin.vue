@@ -5,9 +5,9 @@
 
     <v-btn
       depressed
-      color="primary"
+      dark
+      color="green"
       id="add_movie_link"
-      flat
       v-bind:to="{ name: 'AddMovie' }"
     >
       Add Movie
@@ -30,9 +30,17 @@
       <div>{{ movie.runTime }}</div>
       <div>{{ movie.moreDescription | abbreviate }}</div>
       <div class="actions">
-        <span>Show</span>
-        <span>Edit</span>
-        <v-btn>Delete</v-btn>
+        <v-btn x-small>
+          <router-link :to="{ name: 'Movie', params: { id: movie.id } }"
+            >Show</router-link
+          ></v-btn
+        >
+        <v-btn x-small>
+          <router-link :to="{ name: 'EditMovie', params: { id: movie.id } }"
+            >Edit</router-link
+          ></v-btn
+        >
+        <v-btn x-small @click="deleteMovie(movie)">Delete</v-btn>
       </div>
     </div>
 
@@ -120,6 +128,15 @@ export default {
       if (text) {
         text = text.replace("<p>", "");
         return text.slice(0, 50);
+      }
+    }
+  },
+
+  methods: {
+    deleteMovie(movie) {
+      let response = confirm(`Are you sure you want to delete ${movie.name}`);
+      if (response) {
+        this.$store.dispatch("deleteMovie", movie);
       }
     }
   }

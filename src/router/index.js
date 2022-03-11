@@ -3,6 +3,7 @@ import Router from "vue-router";
 // import Movies from "@/components/Movies";
 import Contact from "@/components/Contact";
 import AddMovie from "@/components/AddMovie";
+import EditMovie from "@/components/EditMovie";
 import Movie from "@/components/Movie";
 import Register from "@/components/Register";
 import Login from "@/components/Login";
@@ -26,6 +27,13 @@ export default new Router({
       name: "Movies",
       component: Movies
     },
+
+    {
+      path: "/movies/edit",
+      name: "EditMovie",
+      component: EditMovie
+    },
+
     {
       path: "/contacts",
       name: "Contact",
@@ -56,10 +64,10 @@ export default new Router({
       path: "/admin",
       name: "Admin",
       component: Admin
+    },
+    {
+      path: "/:notFound(.*)",
+      component: NotFound
     }
-    // {
-    //   path: "/:notFound(.*)",
-    //   component: NotFound
-    // }
   ]
 });

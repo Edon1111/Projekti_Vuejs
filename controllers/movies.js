@@ -87,4 +87,30 @@ module.exports.controller = app => {
       }
     );
   });
+
+  // update a movie
+  app.put("/movies/:id", (req, res) => {
+    Movie.findById(
+      req.params.id,
+      "name description release_year genre originalLanguage runTime moreDescription",
+      function(error, movie) {
+        if (error) {
+          console.error(error);
+        }
+        movie.name = req.body.name;
+        movie.description = req.body.description;
+        movie.release_year = req.body.release_year;
+        movie.genre = req.body.genre;
+        movie.originalLanguage = req.body.originalLanguage;
+        movie.runTime = req.body.runTime;
+        movie.moreDescription = req.body.moreDescription;
+        movie.save(function(error, movie) {
+          if (error) {
+            console.log(error);
+          }
+          res.send(movie);
+        });
+      }
+    );
+  });
 };
