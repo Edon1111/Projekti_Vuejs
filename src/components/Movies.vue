@@ -2,7 +2,7 @@
   <v-container grid-list-md>
     <div search-wrapper panel-heading>
       <v-form>
-        <v-text-field outline label="Search for a movie" append-icon="search"></v-text-field>
+        <v-text-field outline label="Search for a movie" append-icon="search" v-model="search"></v-text-field>
       </v-form>
       <br />
       <br />
