@@ -32,8 +32,9 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>
-              Explore
+            <v-btn color="orange lighten-2" text 
+                v-bind:to="`/movies/${movie._id}`">
+             Read more and rate
             </v-btn>
 
             <v-spacer></v-spacer>
@@ -51,12 +52,6 @@
               <v-card-text>
                 {{ movie.description }}
               </v-card-text>
-              <v-btn
-                style="color:#5665BE"
-                flat
-                v-bind:to="`/movies/${movie._id}`"
-                >Read more and rate</v-btn
-              >
             </div>
           </v-expand-transition>
         </v-card>
