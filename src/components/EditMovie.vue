@@ -14,6 +14,18 @@
           v-model="movie.description"
           multi-line
         ></v-textarea>
+        <v-textarea
+          label="Thumnail URL"
+          v-model="movie.thumbNail"
+          required
+          :rules="nameRules"
+        ></v-textarea>
+        <v-textarea
+          label="Movie Url"
+          v-model="movie.movieUrl"
+          required
+          :rules="nameRules"
+        ></v-textarea>
         <v-select
           label="Movie Release Year"
           v-model="movie.release_year"
@@ -67,6 +79,8 @@ export default {
     valid: true,
     name: "",
     description: "",
+    thumbNail: "",
+    movieUrl: "",
     genre: "",
     release_year: "",
     originalLanguage: "",
@@ -113,6 +127,8 @@ export default {
         this.movie = {
           name: this.name,
           description: this.description,
+          thumbNail: this.thumbNail,
+          movieUrl: this.movieUrl,
           release_year: this.release_year,
           genre: this.genre,
           originalLanguage: this.originalLanguage,

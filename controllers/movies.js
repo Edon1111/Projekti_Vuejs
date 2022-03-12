@@ -7,7 +7,7 @@ module.exports.controller = app => {
   app.get("/movies", (req, res) => {
     Movie.find(
       {},
-      "name description release_year genre originalLanguage runTime moreDescription",
+      "name description thumbNail movieUrl release_year genre originalLanguage runTime moreDescription",
       { sort: { _id: -1 } },
       function(error, movies) {
         if (error) {
@@ -24,7 +24,7 @@ module.exports.controller = app => {
   app.get("/api/movies/:id", (req, res) => {
     Movie.findById(
       req.params.id,
-      "name description release_year genre originalLanguage runTime moreDescription",
+      "name description thumbNail movieUrl release_year genre originalLanguage runTime moreDescription",
       (error, movie) => {
         if (error) {
           console.error(error);
@@ -58,6 +58,8 @@ module.exports.controller = app => {
     const movie = new Movie({
       name: req.body.name,
       description: req.body.description,
+      thumbNail: req.body.thumbNail,
+      movieUrl: req.body.movieUrl,
       release_year: req.body.release_year,
       genre: req.body.genre,
       originalLanguage: req.body.originalLanguage,
@@ -92,13 +94,15 @@ module.exports.controller = app => {
   app.put("/movies/:id", (req, res) => {
     Movie.findById(
       req.params.id,
-      "name description release_year genre originalLanguage runTime moreDescription",
+      "name description thumbNail movieUrl release_year genre originalLanguage runTime moreDescription",
       function(error, movie) {
         if (error) {
           console.error(error);
         }
         movie.name = req.body.name;
         movie.description = req.body.description;
+        movie.thumbNail = req.body.thumbNail;
+        movie.movieUrl = req.body.movieUrl;
         movie.release_year = req.body.release_year;
         movie.genre = req.body.genre;
         movie.originalLanguage = req.body.originalLanguage;

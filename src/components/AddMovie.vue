@@ -1,64 +1,85 @@
 <template>
   <div id="container">
-    <v-form v-model="valid" ref="form" lazy-validation>
-      <v-textarea
-        label="Movie Name"
-        v-model="name"
-        :rules="nameRules"
-        required
-      ></v-textarea>
-      <v-textarea
-        name="input-7-1"
-        label="Movie Description"
-        v-model="description"
-        multi-line
-      ></v-textarea>
-      <v-select
-        label="Movie Release Year"
-        v-model="release_year"
-        required
-        :rules="releaseRules"
-        :items="years"
-      ></v-select>
-      <v-textarea
-        label="Movie Genre"
-        v-model="genre"
-        required
-        :rules="genreRules"
-      ></v-textarea>
-      <v-textarea
-        label="Original Language"
-        v-model="originalLanguage"
-        required
-        :rules="nameRules"
-      ></v-textarea>
-      <v-textarea
-        label="RunTime"
-        v-model="runTime"
-        required
-        :rules="nameRules"
-      ></v-textarea>
-      <v-textarea
-        label="More Description"
-        v-model="moreDescription"
-        required
-        :rules="nameRules"
-      ></v-textarea>
-      <v-btn @click="submit" :disabled="!valid">
-        submit
-      </v-btn>
-      <v-btn @click="clear">clear</v-btn>
-    </v-form>
+    <v-row>
+      <v-col md="3" cols="12">
+        <v-form v-model="valid" ref="form" lazy-validation>
+          <v-text-field
+            label="Movie Name"
+            v-model="name"
+            :rules="nameRules"
+            required
+          ></v-text-field>
+          <v-text-field
+            name="input-7-1"
+            label="Movie Description"
+            v-model="description"
+            multi-line
+          ></v-text-field>
+
+          <v-text-field
+            label="Thumnail URL"
+            v-model="thumbNail"
+            required
+            :rules="nameRules"
+          ></v-text-field>
+          <v-text-field
+            label="Movie Url"
+            v-model="movieUrl"
+            required
+            :rules="nameRules"
+          ></v-text-field>
+          <v-select
+            label="Movie Release Year"
+            v-model="release_year"
+            required
+            :rules="releaseRules"
+            :items="years"
+          ></v-select>
+          <v-text-field
+            label="Movie Genre"
+            v-model="genre"
+            required
+            :rules="genreRules"
+          ></v-text-field>
+          <v-text-field
+            label="Original Language"
+            v-model="originalLanguage"
+            required
+            :rules="nameRules"
+          ></v-text-field>
+          <v-text-field
+            label="RunTime"
+            v-model="runTime"
+            required
+            :rules="nameRules"
+          ></v-text-field>
+          <v-text-field
+            label="More Description"
+            v-model="moreDescription"
+            required
+            :rules="nameRules"
+          ></v-text-field>
+
+          <v-btn @click="submit" :disabled="!valid">
+            submit
+          </v-btn>
+          <v-btn @click="clear">clear</v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
   data: () => ({
     valid: true,
     name: "",
     description: "",
+    thumbNail: "",
+    movieUrl: "",
     genre: "",
     release_year: "",
     originalLanguage: "",
@@ -104,6 +125,8 @@ export default {
         const movie = {
           name: this.name,
           description: this.description,
+          thumbNail: this.thumbNail,
+          movieUrl: this.movieUrl,
           release_year: this.release_year,
           genre: this.genre,
           originalLanguage: this.originalLanguage,

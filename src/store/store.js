@@ -88,10 +88,17 @@ export const store = new Vuex.Store({
     },
 
     async editMovie({ commit }, movie) {
-      let response = await axios.put(`/movies/${movie._id}`, movie);
-      let newMovie = response.movie;
-      commit("EDIT_MOVIE", newMovie);
-      return newMovie;
+      let response = await axios
+        .put(`/movies/${movie._id}`, movie)
+        .then(response => {
+          let newMovie = response.movie;
+          commit("EDIT_MOVIE", newMovie);
+          alert("Great!", "Movie edited successfully!", "success");
+          return newMovie;
+        })
+        .catch(() => {
+          alert("Sorry, could not edit the movie!");
+        });
     },
 
     // deleteMovie: (context, movie) => {
@@ -122,16 +129,20 @@ export const store = new Vuex.Store({
       })
         .then(response => {
           context.commit("ADD_CONTACT", response.data);
-          this.$swal("Great!", "We received your message!", "success");
+          alert("Great!", "We received your message!", "success");
         })
         .catch(() => {
-          this.$swal("Oh oo!", "We didn't get your message!", "error");
+          alert("Oh oo!", "We didn't get your message!", "error");
         });
     },
     fetchMovies: (context, payload) => {
       axios({
         method: "get",
-        url: "/movies"
+
+        url: "/movies",
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
         .then(response => {
           context.commit("MOVIES", response.data.movies);

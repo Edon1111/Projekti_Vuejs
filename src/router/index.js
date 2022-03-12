@@ -22,11 +22,6 @@ export default new Router({
       name: "Home",
       component: Home
     },
-    {
-      path: "/movies",
-      name: "Movies",
-      component: Movies
-    },
 
     {
       path: "/movies/edit",
@@ -49,6 +44,12 @@ export default new Router({
       name: "Movie",
       component: Movie
     },
+    {
+      path: "/movies",
+      name: "Movies",
+      component: Movies
+    },
+
     {
       path: "/users/register",
       name: "Register",

@@ -3,6 +3,7 @@
 //alias.
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import "@mdi/font/css/materialdesignicons.css";
 // index.js or main.js
 
 import BootstrapVue from "bootstrap-vue";
