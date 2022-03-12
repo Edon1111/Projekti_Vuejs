@@ -1,13 +1,9 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col md="9" cols="12">
-        <!-- <video-player
-          class="video-js vjs-default-skin"
-          ref="videoPlayer"
-          :options="playerOptions"
-        ></video-player> -->
-
+  <v-card
+    class="mx-auto"
+    max-width="800"
+  >
+    <div class="h1" >{{ movie.name }}</div><br><br>
         <LazyYoutube ref="lazyVideo" :src="movie.movieUrl"> </LazyYoutube>
         <div class="videoControls">
           <v-btn @click="handleClick('playVideo')">Play</v-btn>
@@ -15,27 +11,33 @@
           <v-btn @click="handleClick('pauseVideo')">Pause</v-btn>
           <v-btn @click="handleClick('resetView')">Reset</v-btn>
         </div>
-      </v-col>
-
-      <v-col md="3" cols="12">
-        <div class="h1">{{ movie.name }}</div>
-
-        <div v-html="movie.description"></div>
-        <div>Release Year: {{ movie.release_year }}</div>
-        <div>Genre : {{ movie.genre }}</div>
+        <br>
+        <br>
+    <!-- <v-card-title>
+      <div class="h1" >{{ movie.name }}</div><br><br>
+    </v-card-title> -->
+    <v-card-body>
+      <div v-html="movie.description"></div><br>
+       <div><b>Release Year: </b>{{ movie.release_year }}</div><br>
+        <div><b>Genre : </b>{{ movie.genre }}</div><br>
         <div id="rate_movie" v-if="current_user" @click="rate">
           Rate this movie
-        </div>
-        <div>Original Language: {{ movie.originalLanguage }}</div>
+        </div><br>
+        <div><b>Original Language:</b> {{ movie.originalLanguage }}</div><br>
 
-        <div>RunTime: {{ movie.runTime }}</div>
+        <div><b>RunTime: {{ movie.runTime }}</b></div><br>
         <div>
-          {{ movie.moreDescription }}
+          {{ movie.moreDescription }}<br>
         </div>
-      </v-col>
-    </v-row>
-    <v-layout> </v-layout>
-  </v-container>
+    </v-card-body>
+    <v-btn  padding-left="5px"
+                v-bind:to="`/movies`">
+             Back
+    </v-btn>
+
+      
+  
+  </v-card>
 </template>
 <script>
 import axios from "axios";
@@ -166,17 +168,3 @@ export default {
 };
 </script>
 
-<style>
-.video-js {
-  margin: auto;
-}
-
-.videoControls {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-</style>
