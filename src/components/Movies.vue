@@ -1,7 +1,11 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex md4 v-for="movie in movies" :key="movie._id">
+      <div class="search-wrapper panel-heading col-sm-12">
+      <input type="text" v-model="search" placeholder="Search" /> <br />
+      <br />
+    </div>
+      <v-flex md4 v-for="movie in filteredMovies" :key="movie._id">
         <v-card class="flex-container" height="300px">
           <v-card-title primary-title>
             <div class="headline">
@@ -27,9 +31,17 @@
 import axios from "axios";
 export default {
   name: "Movies",
+  data(){
+    return{
+      search:''
+    }
+  },
   computed: {
     movies() {
       return this.$store.getters.fetchMovies;
+    },
+     filteredMovies(){
+      return this.movies.filter(moviess=>moviess.name.includes(this.search))
     }
   },
   mounted() {
