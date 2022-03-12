@@ -20,9 +20,10 @@
       <div v-html="movie.description"></div><br>
        <div><b>Release Year: </b>{{ movie.release_year }}</div><br>
         <div><b>Genre : </b>{{ movie.genre }}</div><br>
-        <div id="rate_movie" v-if="current_user" @click="rate">
+        <v-btn id="rate_movie" v-if="current_user" @click="rate">
           Rate this movie
-        </div><br>
+        </v-btn>
+        <br>
         <div><b>Original Language:</b> {{ movie.originalLanguage }}</div><br>
 
         <div><b>RunTime: {{ movie.runTime }}</b></div><br>

@@ -9,6 +9,7 @@
     </div>
     <v-layout row wrap>
       <v-flex md4 v-for="movie in filteredMovies" :key="movie._id">
+        <br>
         <v-card class="flex-container mx-auto" max-width="344">
           <v-img :src="movie.thumbNail" height="200px"> </v-img>
           <v-card-title primary-title>
