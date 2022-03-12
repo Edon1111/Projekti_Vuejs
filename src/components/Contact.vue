@@ -3,7 +3,7 @@
     <v-img
       max-height="50%"
       max-width="40%"
-      src="https://www.qloudy.io/wp-content/uploads/2019/06/Untitled-5.png"
+      src="https://freepikpsd.com/file/2020/03/Cinema-Transparent.png"
       align="left"
     ></v-img>
     <div id="container">

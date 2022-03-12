@@ -1,13 +1,17 @@
 <template>
    <body>
-      <div style="background-image: url('https://i.pinimg.com/originals/68/10/ed/6810ed53357d2e5cb82210c97de009b9.jpg');
-         background-size: cover; height:70vh; margin: auto; padding-top:10px" ></div>
-
-    <section id="movies"> 
-           <div class="coach" style="padding-left:40%; padding-top:1%"> <v-btn link to="/movies" style="color:#5665BE">Read & rate a movie</v-btn></div>
+      <section>
+     <v-carousel hide-delimiters>
+    <v-carousel-item
+      v-for="(item,i) in photo"
+      :key="i"
+      :src="item.src"
+    ></v-carousel-item>
+  </v-carousel>
+  <section id="movies" > 
+           <div class="coach" style="padding-left:40%; padding-top:1%"> <v-btn link to="/movies"  color="red darken-4">Read & rate a movie</v-btn></div>
       </section>
-
- 
+      </section>
 
       <section id="about">
        <div class="row">
@@ -19,35 +23,107 @@
       </div>
   </div>
   <div class="column">
-     <img src="https://media4.giphy.com/media/3o7rc0qU6m5hneMsuc/giphy.gif" 
+     <img src="https://powping.com/file/9c3a26bb37764d887fcef6646e4f237aa7995a2a21abdfb6e0591d87d063bc65" 
      style="padding-left:60px; padding-top:50px; max-width: 90%;
      max-height: 90%;">
   </div>
 </div>
-
-<div class="row">
-   <div class="column">
-     <img src="https://i.gifer.com/B3JL.gif" 
-     style="padding-left:160px; padding-top:110px; max-width: 90%;
-     max-height: 90%;">
-  </div>
-  <div class="column">
-      <p style="position: absolute;
-   color: #484848;
-   left:670px;
-   top:570px;
-   font-size:220%;">Watch everywhere.</p>
-      <div class="p1">
-          <h4 style="padding-left:15px; color: #787878;">Stream unlimited movies and TV shows on your phone,<br> tablet, laptop, and TV without paying more.
-            </h4>
-      </div>
-  </div>
-</div>
-      </section>
       <br><br>
+      </section>
+
+
+           <section>
+        <v-layout
+          column
+          wrap
+          class="my-5"
+          align-center
+        >
+          <v-flex xs12 sm4 class="my-3">
+            <div class="text-xs-center">
+              <h2 class="headline">The best place to enjoy the most amazing movies</h2>
+              <span class="subheading">
+                No more restrictions, no more limits
+              </span>
+            </div>
+          </v-flex>
+          <v-flex xs12>
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 md4>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large class="red--text text--darken-4">mdi-movie-play</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Download your best movies and watch it everywhere.</div>
+                    </v-card-title>
+                    <v-card-text>
+                     Watching a movie wasnt never so easily.
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large class="red--text text--darken-4">mdi-video-vintage</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline">Create profiles for kids.</div>
+                    </v-card-title>
+                    <v-card-text>
+                      Send kids on adventures with their favorite characters in a space made just for them—free with your membership.
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                  <v-card class="elevation-0 transparent">
+                    <v-card-text class="text-xs-center">
+                      <v-icon x-large class="red--text text--darken-4">mdi-movie-roll</v-icon>
+                    </v-card-text>
+                    <v-card-title primary-title class="layout justify-center">
+                      <div class="headline text-xs-center">Download your shows to watch offline.</div>
+                    </v-card-title>
+                    <v-card-text>
+                     Save your favorites easily and always have something to watch.
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </section>
+
+     
 
    </body>
+
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        photo: [
+          {
+            src: 'https://cdn.thetealmango.com/wp-content/uploads/2021/09/expensive-films.jpg',
+          },
+          {
+            src: 'https://images.summitmedia-digital.com/esquiremagph/images/2020/04/07/Top-Rated-Trinity-01.jpg',
+          },
+          {
+            src: 'https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/1579830754870-9IAYNSOR0S7TP5SKI9VR/image-asset.jpeg',
+          },
+          {
+            src: 'https://unrealitymag.com/wp-content/uploads/2013/01/et3.jpg',
+          },
+        ],
+
+      }
+    },
+  }
+</script>
 
 
 <style scoped>
@@ -58,12 +134,12 @@
    position: relative;
    }
    #movies{
-     background-color: #fff;
+     background-color: rgb(255, 255, 255);
      height: 10vh;
     }
     
    #about{
-   background-color: #fff;
+   background-color: rgb(255, 255, 255);
    }
    
    .row {
@@ -91,6 +167,9 @@
    left:630px;
    top:650px;
    }
-
+.social-icon {
+  font-size: 21px;
+  color: white;
+}
 
 </style>
