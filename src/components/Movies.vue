@@ -1,18 +1,9 @@
 <template>
   <v-container grid-list-md>
     <div search-wrapper panel-heading>
-      <input
-        type="text"
-        style="border: 1px solid grey;
-          border-radius: 5px;
-          height: 25px;
-          width: 100%;
-          padding: 2px 23px 2px 30px;
-          outline: 0;
-          background-color: #f5f5f5;"
-        v-model="search"
-        placeholder="Search for a movie"
-      />
+      <v-form>
+        <v-text-field outline label="Search for a movie" append-icon="search"></v-text-field>
+      </v-form>
       <br />
       <br />
     </div>
