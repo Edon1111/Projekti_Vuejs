@@ -2,7 +2,13 @@
   <v-container grid-list-md>
     <v-layout row wrap>
       <div class="search-wrapper panel-heading col-sm-12">
-      <input type="text" v-model="search" placeholder="Search" /> <br />
+      <input type="text" style="border: 1px solid grey;
+          border-radius: 5px;
+          height: 25px;
+          width: 100%;
+          padding: 2px 23px 2px 30px;
+          outline: 0;
+          background-color: #f5f5f5;" v-model="search" placeholder="Search for a movie" /> <br />
       <br />
     </div>
       <v-flex md4 v-for="movie in filteredMovies" :key="movie._id">
@@ -41,7 +47,7 @@ export default {
       return this.$store.getters.fetchMovies;
     },
      filteredMovies(){
-      return this.movies.filter(moviess=>moviess.name.includes(this.search))
+      return this.movies.filter(moviess=>moviess.name.toLowerCase().includes(this.search.toLowerCase()))
     }
   },
   mounted() {
