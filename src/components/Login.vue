@@ -14,9 +14,15 @@
           ></v-text-field>
           <v-text-field
             label="Password"
+            type="password"
             v-model="password"
             required
           ></v-text-field>
+          <v-text>
+            Don't have an account?
+            <router-link :to="{ name: 'Register' }">Signup here</router-link>
+          </v-text>
+          <br /><br />
           <v-btn @click="submit" :disabled="!valid">
             submit
           </v-btn>
