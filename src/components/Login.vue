@@ -2,7 +2,7 @@
  <div id="container">
 <v-card class="mx-auto" max-height="100%" max-width="70%">
       <v-toolbar dark color="blue-grey darken-4">
-        <v-toolbar-title>Contact Us </v-toolbar-title>
+        <v-toolbar-title>Login </v-toolbar-title>
       </v-toolbar>
       <v-card-text>
   <v-form v-model="valid" ref="form" lazy-validation>
@@ -12,7 +12,13 @@
       :rules="emailRules"
       required
     ></v-text-field>
-    <v-text-field label="Password" v-model="password" required></v-text-field>
+    <v-text-field label="Password" type="password" v-model="password" required></v-text-field>
+    <v-text>
+      Don't have an account?
+       <router-link :to="{ name: 'Register'}"
+              >Signup here</router-link>
+    </v-text>
+    <br><br>
     <v-btn @click="submit" :disabled="!valid">
       submit
     </v-btn>

@@ -22,7 +22,12 @@
     :rules="[(this.password === this.confirm_password) || 'Password must match']"
 
     ></v-text-field>
-    
+    <v-text>
+      Already have an account? 
+       <router-link :to="{ name: 'Login'}"
+              >Login here</router-link>
+    </v-text>
+    <br><br>
     <v-btn @click="submit" :disabled="!valid">
       submit
     </v-btn>
