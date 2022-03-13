@@ -2,23 +2,27 @@
   <div id="container">
     <v-card class="mx-auto" max-height="100%" max-width="90%">
       <v-toolbar dark color="blue-grey darken-4">
-        <v-toolbar-title>Contact Us </v-toolbar-title>
+        <v-toolbar-title>Register </v-toolbar-title>
       </v-toolbar>
       <v-card-text>
   <v-form v-model="valid" ref="form" lazy-validation>
-    <v-text-field label="Name" v-model="name" required></v-text-field>
+    <v-text-field label="Name" v-model="name" :rules="nameRules" required></v-text-field>
     <v-text-field
       label="Email"
       v-model="email"
       :rules="emailRules"
       required
     ></v-text-field>
-    <v-text-field label="Password" v-model="password" required></v-text-field>
+    <v-text-field type="password" label="Password" :rules="passwordRules" v-model="password" required></v-text-field>
+          
     <v-text-field
       name="input-7-1"
       label="Confirm Password"
       v-model="confirm_password"
+    :rules="[(this.password === this.confirm_password) || 'Password must match']"
+
     ></v-text-field>
+    
     <v-btn @click="submit" :disabled="!valid">
       submit
     </v-btn>
@@ -39,7 +43,24 @@ export default {
     emailRules: [
       v => !!v || "E-mail is required",
       v => /\S+@\S+\.\S+/.test(v) || "E-mail must be valid"
+    ],
+    nameRules:[
+      v=> !!v || "Name is required",
+      v=> v.length > 2 || "Name must be valid"
+    ],
+    passwordRules:[
+      v=> !!v || "Password is required",
+      v=> v.length > 8 || "Password should contain at least 8 characters",
+      v=> /\d/.test(v) || "Password should contain a number or more ",
+      v=> /[a-z]/.test(v) || "Password should contain at least one lowercase letter",
+      v=> /[A-Z]/.test(v) || "Password should contain at least one uppercase letter",
+      v=> /[!@#\$%\^\&*\)\(+=._-]/.test(v) || "Password should contain at least special character"
+    ],
+    ConfirmPasswordRules:[
+      v=> !!v || "Confirm password is required"
     ]
+   
+    
   }),
   methods: {
     async submit() {
