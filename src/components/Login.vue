@@ -1,5 +1,10 @@
-<template>
-<div id="container">
+<template >
+ <div id="container">
+<v-card class="mx-auto" max-height="100%" max-width="70%">
+      <v-toolbar dark color="blue-grey darken-4">
+        <v-toolbar-title>Contact Us </v-toolbar-title>
+      </v-toolbar>
+      <v-card-text>
   <v-form v-model="valid" ref="form" lazy-validation>
     <v-text-field
       label="Email"
@@ -13,8 +18,9 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
-  </div>
- 
+      </v-card-text></v-card>
+
+ </div>
 </template>
 
 <script>
