@@ -1,13 +1,13 @@
 <template>
   <v-app id="inspire">
-    <router-link v-bind:to="{ name: 'Home' }">
-    </router-link>
+    <router-link v-bind:to="{ name: 'Home' }"> </router-link>
 
     <v-toolbar color="red darken-4" dark fixed app>
-       <v-toolbar-side-icon>
-        <v-img src="http://www.bcslogic.com/wp-content/uploads/2018/06/2018.06.06-Brett-feature.png" >
-      
-    </v-toolbar-side-icon>  
+      <v-toolbar-side-icon>
+        <v-img
+          src="http://www.bcslogic.com/wp-content/uploads/2018/06/2018.06.06-Brett-feature.png"
+        />
+      </v-toolbar-side-icon>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-bind:to="{ name: 'Admin' }" flat>
@@ -15,6 +15,24 @@
             <v-list-tile-content id="Admin">Admin</v-list-tile-content>
           </v-list-tile>
         </v-btn>
+
+        <v-btn
+          class="btn btn-warning  "
+          id="adminLogout_btn"
+          flat
+          v-if="isLoggedIn"
+          @click="handleSignOut"
+          >Admin Logout</v-btn
+        >
+
+        <!-- <button
+          @click="handleSignOut"
+          v-if="isLoggedIn"
+          type="button"
+          class="btn btn-warning btn-lg "
+        >
+          Sign out
+        </button> -->
 
         <v-btn v-bind:to="{ name: 'Home' }" flat>
           <v-list-tile>
@@ -53,52 +71,51 @@
         <div id="app">
           <router-view />
         </div>
-      </v-container>  
+      </v-container>
     </v-content>
-<v-footer default
-    padless 
-      tile
-      class="red darken-4 white--text text-center"
-  >
-    <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4 white--text"
-          icon
-        >
-          <v-icon size="24px">
-            {{ icon }}
-          </v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <div>&copy; {{ new Date().getFullYear() }}</div>
-  </v-footer>
+    <v-footer default padless tile class="red darken-4 white--text text-center">
+      <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
+        <v-icon size="24px">
+          {{ icon }}
+        </v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import axios from "axios";
 import "./assets/stylesheets/main.css";
 import bus from "./bus";
+
+let auth;
 export default {
   name: "app",
   data: () => ({
+    isLoggedIn: null,
     drawer: null,
     current_user: null,
-    icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
+    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"]
   }),
-   
+
   props: {
     source: String
   },
   mounted() {
     this.fetchUser();
     this.listenToEvents();
+
+    auth = getAuth();
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
   },
   methods: {
     listenToEvents() {
@@ -126,6 +143,12 @@ export default {
           this.$router.push({ name: "Home" });
         })
         .catch(() => {});
+    },
+
+    handleSignOut() {
+      signOut(auth).then(() => {
+        this.$router.push({ name: "AdminLogin" });
+      });
     }
   }
 };

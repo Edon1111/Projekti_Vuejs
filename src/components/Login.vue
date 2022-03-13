@@ -1,26 +1,30 @@
-<template >
- <div id="container">
-<v-card class="mx-auto" max-height="100%" max-width="70%">
+<template>
+  <div id="container">
+    <v-card class="mx-auto" max-height="100%" max-width="70%">
       <v-toolbar dark color="blue-grey darken-4">
-        <v-toolbar-title>Contact Us </v-toolbar-title>
+        <v-toolbar-title>Login </v-toolbar-title>
       </v-toolbar>
       <v-card-text>
-  <v-form v-model="valid" ref="form" lazy-validation>
-    <v-text-field
-      label="Email"
-      v-model="email"
-      :rules="emailRules"
-      required
-    ></v-text-field>
-    <v-text-field label="Password" v-model="password" required></v-text-field>
-    <v-btn @click="submit" :disabled="!valid">
-      submit
-    </v-btn>
-    <v-btn @click="clear">clear</v-btn>
-  </v-form>
-      </v-card-text></v-card>
-
- </div>
+        <v-form v-model="valid" ref="form" lazy-validation>
+          <v-text-field
+            label="Email"
+            v-model="email"
+            :rules="emailRules"
+            required
+          ></v-text-field>
+          <v-text-field
+            label="Password"
+            v-model="password"
+            required
+          ></v-text-field>
+          <v-btn @click="submit" :disabled="!valid">
+            submit
+          </v-btn>
+          <v-btn @click="clear">clear</v-btn>
+        </v-form>
+      </v-card-text></v-card
+    >
+  </div>
 </template>
 
 <script>
@@ -72,8 +76,8 @@ export default {
 };
 </script>
 <style scoped>
-  #container{
-    margin:auto;
-    width:50%
-  }
+#container {
+  margin: auto;
+  width: 50%;
+}
 </style>
