@@ -8,7 +8,12 @@
     <v-btn @click="show_3 = !show_3">List of Ratings</v-btn>
     <v-btn @click="show_2 = !show_2">List of Registered Users</v-btn>
 
-    <div v-if="show">
+    <br>
+    <v-divider></v-divider>
+
+    <v-card v-if="show">
+      <br>
+      <div v-if="show">
       <v-btn
         depressed
         dark
@@ -47,53 +52,57 @@
       </div>
     </div>
 
-    <br />
-    <hr />
-    <br />
+    </v-card>
+
 
     <div v-if="show_1">
-      <div class="flex-table">
+      <div class="flex-table" >
         <div>Name</div>
         <div>Surname</div>
-        <div>Message</div>
+        <v-spacer></v-spacer>
         <div>Email</div>
+        <v-spacer></v-spacer>
+         <div>Message</div>
       </div>
       <div v-for="contact in contacts" :key="contact.id" class="flex-table">
         <div>{{ contact.name }}</div>
         <div>{{ contact.surname }}</div>
-        <div>{{ contact.message }}</div>
+        <v-spacer></v-spacer>
         <div>{{ contact.email }}</div>
+        <v-spacer></v-spacer>
+        <div>{{ contact.message }}</div>
       </div>
     </div>
 
-    <br /><br />
-    <hr />
-    <br /><br />
-
+   
     <div v-if="show_2">
       <div class="flex-table">
         <div>Email</div>
+        <v-spacer></v-spacer>
         <div>Password</div>
       </div>
       <div v-for="user in users" :key="user.id" class="flex-table">
         <div>{{ user.email }}</div>
+        <v-spacer></v-spacer>
         <div>{{ user.password | abbreviate }}</div>
       </div>
     </div>
 
-    <br /><br />
-    <hr />
-    <br /><br />
+    
 
-    <div v-if="show_3">
-      <div class="flex-table">
+    <div v-if="show_3" justify-space-around>
+      <div class="flex-table" justify-space-around>
         <div>Movie_id</div>
-        <div>User</div>
+        <v-spacer></v-spacer>
+        <div>User_id</div>
+        <v-spacer></v-spacer>
         <div>Rate</div>
       </div>
-      <div v-for="rating in ratings" :key="rating.id" class="flex-table">
+      <div v-for="rating in ratings" :key="rating.id" class="flex-table" justify-space-around>
         <div>{{ rating.movie_id }}</div>
-        <div>{{ rating.user_id }}</div>
+        <v-spacer></v-spacer>
+        <div>{{ rating._id}}</div>
+        <v-spacer></v-spacer>
         <div>{{ rating.rate }}</div>
       </div>
     </div>
