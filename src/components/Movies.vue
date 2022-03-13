@@ -24,7 +24,7 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="red lighten-2" text 
+            <v-btn color="deep-orange lighten-3" text 
                 v-bind:to="`/movies/${movie._id}`">
              Read more and rate
             </v-btn>
