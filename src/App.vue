@@ -51,14 +51,39 @@
         </div>
       </v-container>
     </v-content>
-
-
-    <v-footer color="red darken-4" app>
-      <v-card-text class="white--text text-center">
-        <strong>UBT College</strong>
+<v-footer
+    dark
+    padless
+  >
+    <v-card
+      flat
+      tile
+      class="red darken-4 white--text text-center"
+    >
+      <v-card-text>
+        <v-btn
+          v-for="icon in icons"
+          :key="icon"
+          class="mx-4 white--text"
+          icon
+        >
+          <v-icon size="24px">
+            {{ icon }}
+          </v-icon>
+        </v-btn>
       </v-card-text>
 
-    </v-footer>
+      <v-card-text class="white--text pt-0">
+        It is estimated that the service has more than 7,000 television episodes and 500 films in its library. The diverse amount of content makes it a great family option.The movie player works smoothly and is easy to use. The free movies are ad-supported, so you have to watch a few ads.
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-text class="white--text">
+        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      </v-card-text>
+    </v-card>
+  </v-footer>
   </v-app>
 </template>
 
@@ -70,8 +95,15 @@ export default {
   name: "app",
   data: () => ({
     drawer: null,
-    current_user: null
+    current_user: null,
+    icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
   }),
+   
   props: {
     source: String
   },
