@@ -8,8 +8,11 @@
       :src="item.src"
     ></v-carousel-item>
   </v-carousel>
-  <section id="movies" > 
-           <div class="coach" style="padding-left:40%; padding-top:1%"> <v-btn link to="/movies"  color="red darken-4">Read & rate a movie</v-btn></div>
+   <section id="movies" > 
+           <div class="coach" style="padding-left:40%; padding-top:1%"> 
+             <v-btn link to="/users/login" v-if="!current_user" color="red darken-4">Read & rate a movie</v-btn>
+              <v-btn link to="/movies" v-else-if="current_user" color="red darken-4">Read & rate a movie</v-btn>
+           </div>
       </section>
       </section>
 
@@ -102,10 +105,12 @@
 </template>
 
 <script>
+import axios from "axios";
   export default {
-    data () {
-      return {
-        photo: [
+    data() {
+    return {
+      current_user: null,
+      photo: [
           {
             src: 'https://cdn.thetealmango.com/wp-content/uploads/2021/09/expensive-films.jpg',
           },
@@ -119,9 +124,27 @@
             src: 'https://unrealitymag.com/wp-content/uploads/2013/01/et3.jpg',
           },
         ],
-
-      }
+    };
+  },
+    mounted() {
+    this.fetchUser();
+  },
+  methods:{
+     async fetchUser() {
+      return axios({
+        method: "get",
+        url: "/api/current_user"
+      })
+        .then(response => {
+          this.current_user = response.data.current_user;
+        })
+        .catch(() => {
+          this.$router.push({ name: "Movies" });
+        });
     },
+
+  }
+
   }
 </script>
 
