@@ -11,11 +11,15 @@ import NotFound from "@/components/NotFound";
 import Movies from "@/components/Movies";
 import Admin from "@/components/Admin";
 import Home from "@/components/Home";
+import AdminLogin from "@/components/AdminLogin";
+import AdminRegister from "@/components/AdminRegister";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
-
   routes: [
     {
       path: "/",
@@ -64,7 +68,20 @@ export default new Router({
     {
       path: "/admin",
       name: "Admin",
-      component: Admin
+      component: Admin,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/adminlogin",
+      name: "AdminLogin",
+      component: AdminLogin
+    },
+    {
+      path: "/adminregister",
+      name: "AdminRegister",
+      component: AdminRegister
     },
     {
       path: "/:notFound(.*)",
@@ -72,3 +89,30 @@ export default new Router({
     }
   ]
 });
+
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const removeListener = onAuthStateChanged(
+      getAuth(),
+      user => {
+        removeListener();
+        resolve(user);
+      },
+      reject
+    );
+  });
+};
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (await getCurrentUser()) {
+      next();
+    } else {
+      alert("Attention! Only Admin can have access.");
+      next("/AdminLogin");
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
