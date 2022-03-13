@@ -2,15 +2,20 @@
   <v-container grid-list-md>
     <div search-wrapper panel-heading>
       <v-form>
-        <v-text-field outline label="Search for a movie" append-icon="search" v-model="search"></v-text-field>
+        <v-text-field
+          outline
+          label="Search for a movie"
+          append-icon="search"
+          v-model="search"
+        ></v-text-field>
       </v-form>
       <br />
       <br />
     </div>
     <v-layout row wrap>
       <v-flex md4 v-for="movie in filteredMovies" :key="movie._id">
-        <br>
-        <v-card class="flex-container mx-auto" max-width="344">
+        <br />
+        <v-card elevation="24" class="flex-container mx-auto" max-width="344">
           <v-img :src="movie.thumbNail" height="200px"> </v-img>
           <v-card-title primary-title>
             <div class="headline">
@@ -24,9 +29,13 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="deep-orange lighten-3" text 
-                v-bind:to="`/movies/${movie._id}`">
-             Read more and rate
+            <v-btn
+              class="white--text"
+              color="orange lighten-2"
+              text
+              v-bind:to="`/movies/${movie._id}`"
+            >
+              Read more and rate
             </v-btn>
 
             <v-spacer></v-spacer>
@@ -77,3 +86,9 @@ export default {
   }
 };
 </script>
+
+<style>
+v-btn {
+  text-decoration: none;
+}
+</style>
