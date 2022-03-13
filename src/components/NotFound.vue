@@ -13,7 +13,7 @@
 
 
 
-        <v-btn rounded color="red darken-4" v-bind:to="`/movies`">Back</v-btn>
+        <v-btn rounded color="red darken-4" v-bind:to="`/home`">Back</v-btn>
    
   </div>
 </template>
