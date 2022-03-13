@@ -10,7 +10,11 @@
     </v-toolbar-side-icon>  
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn text to="/admin">Admin </v-btn>
+        <v-btn v-bind:to="{ name: 'Admin' }" flat>
+          <v-list-tile>
+            <v-list-tile-content id="Admin">Admin</v-list-tile-content>
+          </v-list-tile>
+        </v-btn>
 
         <v-btn v-bind:to="{ name: 'Home' }" flat>
           <v-list-tile>
@@ -18,13 +22,13 @@
           </v-list-tile>
         </v-btn>
 
-        <v-btn v-bind:to="{ name: 'Movies' }" flat>
+        <v-btn v-bind:to="{ name: 'Movies' }" flat v-if="current_user">
           <v-list-tile>
             <v-list-tile-content id="Movies">Movies</v-list-tile-content>
           </v-list-tile>
         </v-btn>
 
-        <v-btn v-bind:to="{ name: 'Contact' }" flat>
+        <v-btn v-bind:to="{ name: 'Contact' }" flat v-if="current_user">
           <v-list-tile>
             <v-list-tile-content id="contact">Contact</v-list-tile-content>
           </v-list-tile>
