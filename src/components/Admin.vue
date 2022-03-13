@@ -1,68 +1,81 @@
 <template>
   <v-container>
     <h1>ADMIN DASHBOARD</h1>
-    <v-btn @click="show = !show">List of Movies</v-btn>
-    <v-btn @click="show_1 = !show_1"
+    <v-btn v-bind:class="show ? 'green' : ''" @click="show = !show"
+      >List of Movies</v-btn
+    >
+    <v-btn v-bind:class="show_1 ? 'green' : ''" @click="show_1 = !show_1"
       >List of Messages delivered from Contact Page</v-btn
     >
-    <v-btn @click="show_3 = !show_3">List of Ratings</v-btn>
-    <v-btn @click="show_2 = !show_2">List of Registered Users</v-btn>
+    <v-btn v-bind:class="show_3 ? 'green' : ''" @click="show_3 = !show_3"
+      >List of Ratings</v-btn
+    >
+    <v-btn v-bind:class="show_2 ? 'green' : ''" @click="show_2 = !show_2"
+      >List of Registered Users</v-btn
+    >
 
-    <br>
+    <br />
+    <!-- <button
+      @click="handleSignOut"
+      v-if="isLoggedIn"
+      type="button"
+      class="btn btn-warning btn-lg btn-block"
+    >
+      Sign out
+    </button> -->
     <v-divider></v-divider>
 
     <v-card v-if="show">
-      <br>
+      <br />
       <div v-if="show">
-      <v-btn
-        depressed
-        dark
-        color="green"
-        id="add_movie_link"
-        v-bind:to="{ name: 'AddMovie' }"
-      >
-        Add Movie
-      </v-btn>
+        <v-btn
+          depressed
+          class="btn btn-warning btn-lg btn-block"
+          dark
+          color="green"
+          id="add_movie_link"
+          v-bind:to="{ name: 'AddMovie' }"
+        >
+          Add Movie
+        </v-btn>
 
-      <div class="flex-table">
-        <div>Name</div>
-        <div>Release Year</div>
-        <div>Genre</div>
-        <div>Original Language</div>
-        <div>Run Time</div>
-        <div>Description</div>
-        <div>Actions</div>
-      </div>
-      <div v-for="movie in movies" :key="movie.id" class="flex-table">
-        <div>{{ movie.name }}</div>
-        <div>{{ movie.release_year }}</div>
-        <div>{{ movie.genre }}</div>
-        <div>{{ movie.originalLanguage }}</div>
-        <div>{{ movie.runTime }}</div>
-        <div>{{ movie.moreDescription | abbreviate }}</div>
-        <div class="actions">
-          <v-btn x-small v-bind:to="`/movies/${movie._id}`">Show</v-btn>
-          <v-btn x-small>
-            <router-link :to="{ name: 'EditMovie', params: { id: movie.id } }"
-              >Edit</router-link
-            ></v-btn
-          >
-          <v-btn x-small @click="deleteMovie(movie)">Delete</v-btn>
+        <div class="flex-table">
+          <div>Name</div>
+          <div>Release Year</div>
+          <div>Genre</div>
+          <div>Original Language</div>
+          <div>Run Time</div>
+          <div>Description</div>
+          <div>Actions</div>
+        </div>
+        <div v-for="movie in movies" :key="movie.id" class="flex-table">
+          <div>{{ movie.name }}</div>
+          <div>{{ movie.release_year }}</div>
+          <div>{{ movie.genre }}</div>
+          <div>{{ movie.originalLanguage }}</div>
+          <div>{{ movie.runTime }}</div>
+          <div>{{ movie.moreDescription | abbreviate }}</div>
+          <div class="actions">
+            <v-btn x-small v-bind:to="`/movies/${movie._id}`">Show</v-btn>
+            <v-btn x-small>
+              <router-link :to="{ name: 'EditMovie', params: { id: movie.id } }"
+                >Edit</router-link
+              ></v-btn
+            >
+            <v-btn x-small @click="deleteMovie(movie)">Delete</v-btn>
+          </div>
         </div>
       </div>
-    </div>
-
     </v-card>
 
-
     <div v-if="show_1">
-      <div class="flex-table" >
+      <div class="flex-table">
         <div>Name</div>
         <div>Surname</div>
         <v-spacer></v-spacer>
         <div>Email</div>
         <v-spacer></v-spacer>
-         <div>Message</div>
+        <div>Message</div>
       </div>
       <div v-for="contact in contacts" :key="contact.id" class="flex-table">
         <div>{{ contact.name }}</div>
@@ -74,7 +87,6 @@
       </div>
     </div>
 
-   
     <div v-if="show_2">
       <div class="flex-table">
         <div>Email</div>
@@ -88,8 +100,6 @@
       </div>
     </div>
 
-    
-
     <div v-if="show_3" justify-space-around>
       <div class="flex-table" justify-space-around>
         <div>Movie_id</div>
@@ -98,10 +108,15 @@
         <v-spacer></v-spacer>
         <div>Rate</div>
       </div>
-      <div v-for="rating in ratings" :key="rating.id" class="flex-table" justify-space-around>
+      <div
+        v-for="rating in ratings"
+        :key="rating.id"
+        class="flex-table"
+        justify-space-around
+      >
         <div>{{ rating.movie_id }}</div>
         <v-spacer></v-spacer>
-        <div>{{ rating._id}}</div>
+        <div>{{ rating._id }}</div>
         <v-spacer></v-spacer>
         <div>{{ rating.rate }}</div>
       </div>
@@ -111,9 +126,14 @@
 
 <script>
 import { mapState } from "vuex";
+
+// import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
+// let auth;
 export default {
   data() {
     return {
+      isLoggedIn: null,
       show: false,
       show_1: false,
       show_2: false,
@@ -125,6 +145,15 @@ export default {
     this.$store.dispatch("fetchMovies");
     this.$store.dispatch("fetchUsers");
     this.$store.dispatch("fetchRatings");
+
+    // auth = getAuth();
+    // onAuthStateChanged(auth, user => {
+    //   if (user) {
+    //     this.isLoggedIn = true;
+    //   } else {
+    //     this.isLoggedIn = false;
+    //   }
+    // });
   },
   computed: {
     ...mapState(["movies"]),
@@ -161,6 +190,11 @@ export default {
         this.$store.dispatch("deleteMovie", movie);
       }
     }
+    // handleSignOut() {
+    //   signOut(auth).then(() => {
+    //     this.$router.push({ name: "AdminLogin" });
+    //   });
+    // }
   }
 };
 </script>
@@ -178,5 +212,10 @@ export default {
 }
 .flex-table .actions * {
   padding-right: 15px;
+}
+
+.green {
+  color: white;
+  border-color: green;
 }
 </style>
