@@ -5,33 +5,63 @@
         <v-toolbar-title>Register </v-toolbar-title>
       </v-toolbar>
       <v-card-text>
-  <v-form v-model="valid" ref="form" lazy-validation>
-    <v-text-field label="Name" v-model="name" :rules="nameRules" required></v-text-field>
+  <v-form v-model="valid" ref="form" lazy-validation >
+    
+    <v-flex>
+      <v-text-field label="Name" v-model="name" :rules="nameRules" required  style="padding-left:75px ; max-width:67%"></v-text-field>
+    </v-flex>
+    
+    <v-flex>
     <v-text-field
       label="Email"
       v-model="email"
       :rules="emailRules"
-      required
+      required style="padding-left:75px ; max-width:67%"
     ></v-text-field>
-    <v-text-field type="password" label="Password" :rules="passwordRules" v-model="password" required></v-text-field>
-          
+    </v-flex>
+
+     <v-layout row wrap justify-center>
+      <v-flex xs12 md6>
+        <v-text-field :type="visibility" label="Password" :rules="passwordRules" v-model="password" required></v-text-field>
+      </v-flex>
+      <v-flex xs4 md2>
+        <v-btn @click="hidePassword()" v-if="visibility == 'text'"><v-icon>mdi-eye-off</v-icon></v-btn>
+        <v-btn @click="showPassword()" v-if="visibility == 'password'"><v-icon>mdi-eye</v-icon></v-btn>
+      </v-flex>
+    </v-layout>
+
+    <v-layout row wrap justify-center>
+      <v-flex xs12 md6>
     <v-text-field
       name="input-7-1"
       label="Confirm Password"
       v-model="confirm_password"
-    :rules="[(this.password === this.confirm_password) || 'Password must match']"
-
+    :rules="[(this.password === this.confirm_password) || 'Password must match']" :type="visibility1"
     ></v-text-field>
-    <v-text>
+      </v-flex>
+
+      <v-flex xs4 md2>
+        <v-btn @click="hideConfirmPassword()" v-if="visibility1 == 'text'"><v-icon>mdi-eye-off</v-icon></v-btn>
+        <v-btn @click="showConfirmPassword()" v-if="visibility1 == 'password'"><v-icon>mdi-eye</v-icon></v-btn>
+      </v-flex>
+      
+    </v-layout>
+
+      
+    <v-text style="padding-left:50px ; max-width:65%">
       Already have an account? 
        <router-link :to="{ name: 'Login'}"
               >Login here</router-link>
     </v-text>
-    <br><br>
-    <v-btn @click="submit" :disabled="!valid">
+    
+
+    <v-spacer></v-spacer>
+   <v-divider></v-divider>
+      <v-btn @click="submit" :disabled="!valid">
       submit
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
+
   </v-form>  </v-card-text></v-card>
   </div>
 </template>
@@ -40,6 +70,8 @@
 import axios from "axios";
 export default {
   data: () => ({
+    visibility:'password',
+    visibility1:'password',
     valid: true,
     name: "",
     email: "",
@@ -68,6 +100,18 @@ export default {
     
   }),
   methods: {
+    showPassword(){
+      this.visibility="text";
+    },
+    hidePassword(){
+      this.visibility="password";
+    },
+    showConfirmPassword(){
+      this.visibility1="text";
+    },
+    hideConfirmPassword(){
+      this.visibility1="password";
+    },
     async submit() {
       if (this.$refs.form.validate()) {
         return axios({

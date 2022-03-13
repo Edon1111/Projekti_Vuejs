@@ -5,7 +5,7 @@
 
     <v-toolbar color="red darken-4" dark fixed app>
        <v-toolbar-side-icon>
-        <v-img src="http://www.bcslogic.com/wp-content/uploads/2018/06/2018.06.06-Brett-feature.png" >
+        <v-img src="http://www.bcslogic.com/wp-content/uploads/2018/06/2018.06.06-Brett-feature.png"/>
       
     </v-toolbar-side-icon>  
       <v-spacer></v-spacer>
