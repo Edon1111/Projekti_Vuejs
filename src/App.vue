@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <router-link v-bind:to="{ name: 'Home' }"> </router-link>
 
-    <v-toolbar color="red darken-4" dark fixed app>
+    <v-toolbar color="grey darken-4" dark fixed app>
       <v-toolbar-side-icon>
         <v-img
           src="http://www.bcslogic.com/wp-content/uploads/2018/06/2018.06.06-Brett-feature.png"
@@ -73,7 +73,13 @@
         </div>
       </v-container>
     </v-content>
-    <v-footer default padless tile class="red darken-4 white--text text-center">
+    <v-footer
+      default
+      padless
+      tile
+      class="grey darken-4 white--text text-center"
+    >
+      <v-spacer></v-spacer>
       <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
         <v-icon size="24px">
           {{ icon }}

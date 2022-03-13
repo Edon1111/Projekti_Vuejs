@@ -30,7 +30,8 @@
 
           <v-card-actions>
             <v-btn
-              class="white--text"
+              class="black--text"
+              style="text-decoration:none"
               color="orange lighten-2"
               text
               v-bind:to="`/movies/${movie._id}`"

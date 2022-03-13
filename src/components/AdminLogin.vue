@@ -10,6 +10,7 @@
           <v-text-field
             label="Password"
             v-model="password"
+            type="password"
             required
           ></v-text-field>
           <p v-if="errMsg">{{ errMsg }}</p>
