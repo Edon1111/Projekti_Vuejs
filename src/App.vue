@@ -53,19 +53,14 @@
         <div id="app">
           <router-view />
         </div>
-      </v-container>
+      </v-container>  
     </v-content>
-<v-footer
-    dark
-    padless
-  >
-    <v-card
-      flat
+<v-footer default
+    padless 
       tile
       class="red darken-4 white--text text-center"
-    >
-      <v-card-text>
-        <v-btn
+  >
+    <v-btn
           v-for="icon in icons"
           :key="icon"
           class="mx-4 white--text"
@@ -75,18 +70,8 @@
             {{ icon }}
           </v-icon>
         </v-btn>
-      </v-card-text>
-
-      <v-card-text class="white--text pt-0">
-        It is estimated that the service has more than 7,000 television episodes and 500 films in its library. The diverse amount of content makes it a great family option.The movie player works smoothly and is easy to use. The free movies are ad-supported, so you have to watch a few ads.
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-card-text>
-    </v-card>
+        <v-spacer></v-spacer>
+        <div>&copy; {{ new Date().getFullYear() }}</div>
   </v-footer>
   </v-app>
 </template>
