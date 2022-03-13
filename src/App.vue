@@ -123,7 +123,7 @@ export default {
       })
         .then(() => {
           bus.$emit("refreshUser");
-          this.$router.push({ name: "Movies" });
+          this.$router.push({ name: "Home" });
         })
         .catch(() => {});
     }
