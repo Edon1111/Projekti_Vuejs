@@ -1,6 +1,6 @@
 <template>
    <body>
-      <section>
+  
      <v-carousel hide-delimiters>
     <v-carousel-item
       v-for="(item,i) in photo"
@@ -8,98 +8,33 @@
       :src="item.src"
     ></v-carousel-item>
   </v-carousel>
-   <section id="movies" > 
+          <v-container>
            <v-layout justify-center > 
-             <v-btn link to="/users/login" v-if="!current_user" color="red darken-4">Read & rate a movie</v-btn>
-              <v-btn link to="/movies" v-else-if="current_user" color="red darken-4">Read & rate a movie</v-btn>
+             <v-btn link to="/users/login" v-if="!current_user" depressed color="red darken-4" class="white--text">Read & rate a movie</v-btn>
+              <v-btn link to="/movies" v-else-if="current_user" depressed  color="red darken-4" class="white--text">Read & rate a movie</v-btn>
            </v-layout>
-      </section>
-      </section>
+          </v-container>
+      <v-divider></v-divider>
+     
+     <v-container>
+       <v-layout row wrap justify-space-around>
+         <v-flex xs6 md4>
+           
+          <v-list-item-title class="headline title mb-1">About Us</v-list-item-title>
+          <div>This is an online database of information related to films,television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews</div>
+         </v-flex>
 
-      <section id="about">
-       <div class="row">
-  <div class="column">
-      <p>Enjoy on your TV.</p>
-      <div class="p">
-          <h4 style="padding-left:15px; color: #787878;">Watch on Smart TVs, Playstation, Xbox, Chromecast,<br> Apple TV, Blu-ray players, and more.
-            </h4>
-      </div>
-  </div>
-  <div class="column">
-     <img src="https://powping.com/file/9c3a26bb37764d887fcef6646e4f237aa7995a2a21abdfb6e0591d87d063bc65" 
-     style="padding-left:60px; padding-top:50px; max-width: 90%;
-     max-height: 90%;">
-  </div>
-</div>
-      <br><br>
-      </section>
+        <v-flex xs4 md2>
+           <v-img max-height="209" max-width="262"
+            src="https://powping.com/file/9c3a26bb37764d887fcef6646e4f237aa7995a2a21abdfb6e0591d87d063bc65"></v-img>
+        </v-flex>
+       </v-layout>
+     </v-container>
 
-
-           <section>
-        <v-layout
-          column
-          wrap
-          class="my-5"
-          align-center
-        >
-          <v-flex xs12 sm4 class="my-3">
-            <div class="text-xs-center">
-              <h2 class="headline">The best place to enjoy the most amazing movies</h2>
-              <span class="subheading">
-                No more restrictions, no more limits
-              </span>
-            </div>
-          </v-flex>
-          <v-flex xs12>
-            <v-container grid-list-xl>
-              <v-layout row wrap align-center>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="red--text text--darken-4">mdi-movie-play</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Download your best movies and watch it everywhere.</div>
-                    </v-card-title>
-                    <v-card-text>
-                     Watching a movie wasnt never so easily.
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="red--text text--darken-4">mdi-video-vintage</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Create profiles for kids.</div>
-                    </v-card-title>
-                    <v-card-text>
-                      Send kids on adventures with their favorite characters in a space made just for them—free with your membership.
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large class="red--text text--darken-4">mdi-movie-roll</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Download your shows to watch offline.</div>
-                    </v-card-title>
-                    <v-card-text>
-                     Save your favorites easily and always have something to watch.
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-flex>
-        </v-layout>
-      </section>
+      <v-divider></v-divider>
 
      
-
+          
    </body>
 
 </template>
@@ -149,50 +84,3 @@ import axios from "axios";
 </script>
 
 
-<style scoped>
-   section{
-   width: 100%;
-   float: left;
-   height: 75vh;
-   position: relative;
-   }
-   #movies{
-     background-color: rgb(255, 255, 255);
-     height: 10vh;
-    }
-    
-   #about{
-   background-color: rgb(255, 255, 255);
-   }
-   
-   .row {
-    display: flex;
-    }
-    .column {
-    flex: 50%;
-    }
-   p{
-   position: absolute;
-   color: #484848;
-   left:110px;
-   top:170px;
-   font-size:220%;
-   }
-   .p{
-    position: absolute;
-   color: #484848;
-   left:100px;
-   top:220px;
-   }   
-   .p1{
-      position: absolute;
-   color: #484848;
-   left:630px;
-   top:650px;
-   }
-.social-icon {
-  font-size: 21px;
-  color: white;
-}
-
-</style>
