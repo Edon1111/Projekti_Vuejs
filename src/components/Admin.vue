@@ -58,7 +58,9 @@
           <div class="actions">
             <v-btn x-small v-bind:to="`/movies/${movie._id}`">Show</v-btn>
             <v-btn x-small>
-              <router-link :to="{ name: 'EditMovie', params: { id: movie.id } }"
+              <router-link
+                class="linkiStyle"
+                :to="{ name: 'EditMovie', params: { id: movie.id } }"
                 >Edit</router-link
               ></v-btn
             >
@@ -213,9 +215,17 @@ export default {
 .flex-table .actions * {
   padding-right: 15px;
 }
+.actions {
+  display: flex;
+  flex-direction: row;
+}
 
 .green {
   color: white;
   border-color: green;
+}
+
+.linkiStyle {
+  text-decoration: none;
 }
 </style>

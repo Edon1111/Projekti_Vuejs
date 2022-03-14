@@ -10,7 +10,9 @@
           <v-text-field
             label="Password"
             v-model="password"
-            type="password"
+            :type="show1 ? 'text' : 'password'"
+            @click:append="show1 = !show1"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             required
           ></v-text-field>
           <p v-if="errMsg">{{ errMsg }}</p>
@@ -29,6 +31,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export default {
   data() {
     return {
+      show1: false,
       email: "",
       password: "",
       errMsg: ""

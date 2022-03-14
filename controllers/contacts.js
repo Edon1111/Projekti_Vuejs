@@ -4,17 +4,19 @@ const passport = require("passport");
 module.exports.controller = app => {
   // fetch all contacts
   app.get("/contacts", (req, res) => {
-    Contact.find({}, "message email ", { sort: { _id: -1 } }, function(
-      error,
-      contacts
-    ) {
-      if (error) {
-        console.log(error);
+    Contact.find(
+      {},
+      "name surname message email ",
+      { sort: { _id: -1 } },
+      function(error, contacts) {
+        if (error) {
+          console.log(error);
+        }
+        res.send({
+          contacts: contacts
+        });
       }
-      res.send({
-        contacts: contacts
-      });
-    });
+    );
   });
   // add a new contact
   app.post("/contacts", (req, res) => {

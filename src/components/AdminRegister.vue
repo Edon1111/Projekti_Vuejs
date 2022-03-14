@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <v-card class="mx-auto" max-height="100%" max-width="70%">
+    <v-card class="mx-auto" max-height="40%" max-width="40%">
       <v-toolbar dark color="blue-grey darken-4">
         <v-toolbar-title>Admin Register </v-toolbar-title>
       </v-toolbar>
@@ -10,7 +10,9 @@
           <v-text-field
             label="Password"
             v-model="password"
-            type="password"
+            :type="show1 ? 'text' : 'password'"
+            @click:append="show1 = !show1"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             required
           ></v-text-field>
           <p v-if="errMsg">{{ errMsg }}</p>
@@ -28,6 +30,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 export default {
   data() {
     return {
+      show1: false,
       email: "",
       password: ""
     };
