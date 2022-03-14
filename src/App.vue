@@ -8,9 +8,11 @@
           src="http://www.bcslogic.com/wp-content/uploads/2018/06/2018.06.06-Brett-feature.png"
         />
       </v-toolbar-side-icon>
+
       <v-spacer></v-spacer>
+
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn v-bind:to="{ name: 'Admin' }" flat>
+          <v-btn v-bind:to="{ name: 'Admin' }" flat>
           <v-list-tile>
             <v-list-tile-content id="Admin">Admin</v-list-tile-content>
           </v-list-tile>
@@ -64,8 +66,71 @@
         <v-btn id="logout_btn" flat v-if="current_user" @click="logout"
           >Logout</v-btn
         >
-      </v-toolbar-items>
-    </v-toolbar>
+
+        </v-toolbar-items>
+
+        <v-menu class="hidden-md-and-up">
+          <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
+          <v-list>
+
+            <v-list-tile>
+              <v-list-tile-content>
+                <v-btn v-bind:to="{ name: 'Admin' }" flat ><v-list-tile-content id="Admin">Admin</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile v-if="isLoggedIn">
+              <v-list-tile-content>
+                <v-btn  @click="handleSignOut"  class="btn btn-warning  " flat ><v-list-tile-content >Admin Logout</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile>
+              <v-list-tile-content>
+                <v-btn v-bind:to="{ name: 'Home' }" flat><v-list-tile-content id="Home">Home</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile v-if="current_user">
+              <v-list-tile-content>
+                <v-btn v-bind:to="{ name: 'Movies' }" flat ><v-list-tile-content id="Movies">Movies</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile v-if="current_user">
+              <v-list-tile-content>
+                <v-btn v-bind:to="{ name: 'Contact' }" flat ><v-list-tile-content id="Contact">Contact</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+             <v-list-tile v-if="current_user">
+              <v-list-tile-content>
+                <v-btn flat ><v-list-tile-content >{{current_user.email}}</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile v-if="!current_user">
+              <v-list-tile-content>
+                <v-btn v-bind:to="{ name: 'Register' }" v-if="!current_user" flat ><v-list-tile-content >Register</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+             <v-list-tile v-if="!current_user">
+              <v-list-tile-content>
+                <v-btn v-bind:to="{ name: 'Login' }" flat ><v-list-tile-content >Login</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+            <v-list-tile v-if="current_user">
+              <v-list-tile-content>
+                <v-btn @click="logout" flat ><v-list-tile-content >Logout</v-list-tile-content></v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+
+          </v-list>
+        </v-menu>
+      </v-toolbar>
+
     <v-content>
       <v-container fluid>
         <div id="app">
