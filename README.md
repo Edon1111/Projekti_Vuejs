@@ -8,9 +8,13 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# startimi i projektit frontend - backend vetem me kete komande ne  localhost:8081 
+nodemon server.js 
+
+
+# serve with hot reload at localhost:8080 only frontend but backend data doesn't show so don't use it
 npm run dev 
-if you want to run only front but backend data doesn't appear
+
 
 # build for production with minification
 npm run build
@@ -18,9 +22,6 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
-#localhost:8081
-#startimi i projektit frontend - backend vetem me kete komande
-nodemon server.js 
 
 
 
