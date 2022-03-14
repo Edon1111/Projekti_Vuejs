@@ -9,10 +9,10 @@
     ></v-carousel-item>
   </v-carousel>
    <section id="movies" > 
-           <div class="coach" style="padding-left:40%; padding-top:1%"> 
+           <v-layout justify-center > 
              <v-btn link to="/users/login" v-if="!current_user" color="red darken-4">Read & rate a movie</v-btn>
               <v-btn link to="/movies" v-else-if="current_user" color="red darken-4">Read & rate a movie</v-btn>
-           </div>
+           </v-layout>
       </section>
       </section>
 
