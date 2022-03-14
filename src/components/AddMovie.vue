@@ -10,10 +10,10 @@
             required
           ></v-text-field>
           <v-text-field
-            name="input-7-1"
             label="Movie Description"
             v-model="description"
-            multi-line
+            :rules="nameRules"
+            required
           ></v-text-field>
 
           <v-text-field
