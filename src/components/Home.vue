@@ -11,7 +11,22 @@
         </v-carousel>
         <section id="movies">
           <div class="coach">
-            <v-btn class="butoniRead" link to="/movies" color="red darken-4"
+            <v-btn
+              link
+              to="/users/login"
+              v-if="!current_user"
+              depressed
+              color="red darken-4"
+              class="white--text"
+              >Read & rate a movie</v-btn
+            >
+            <v-btn
+              link
+              to="/movies"
+              v-else-if="current_user"
+              depressed
+              color="red darken-4"
+              class="white--text"
               >Read & rate a movie</v-btn
             >
           </div>
